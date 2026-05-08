@@ -1,0 +1,21 @@
+{
+  "name": "PolyAgent AI",
+  "short_name": "PolyAgent",
+  "description": "Autonomous AI Trader Dashboard for Polymarket",
+  "start_url": "/PolyAgent/",
+  "display": "standalone",
+  "background_color": "#f0f9ff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "https://api.dicebear.com/7.x/bottts/png?seed=PolyAgent&size=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://api.dicebear.com/7.x/bottts/png?seed=PolyAgent&size=512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

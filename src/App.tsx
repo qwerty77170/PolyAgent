@@ -100,8 +100,28 @@ export default function App() {
     minConfidence: 75
   });
   const [balance, setBalance] = useState({ total: 43241.50, monthProfit: 17421.00, dayChange: +2.15 });
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   const terminalRef = useRef<HTMLDivElement>(null);
+
+  // PWA Install Prompt
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+    }
+  };
 
   // Simulate AI Thinking and Trading
   useEffect(() => {
@@ -430,6 +450,22 @@ export default function App() {
                       )} />
                     </div>
                   </SettingItem>
+
+                  {deferredPrompt && (
+                    <SettingItem 
+                      title="Install Application" 
+                      description="Install PolyAgent as a standalone application on your device for a full-screen experience."
+                      icon={<Plus size={20} className="text-sky-500" />}
+                    >
+                      <button 
+                        onClick={handleInstallClick}
+                        className="w-full py-3 bg-sky-50 border border-sky-200 text-sky-600 font-bold rounded-xl hover:bg-sky-100 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Zap size={16} />
+                        Install PolyAgent
+                      </button>
+                    </SettingItem>
+                  )}
 
                   <div className="pt-6 flex gap-4">
                     <button className="flex-1 py-4 bg-sky-500 text-white font-bold rounded-2xl hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-[0.98]">

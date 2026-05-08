@@ -1,0 +1,6 @@
+{
+  "name": "PolyAgent",
+  "description": "Autonomous AI Trader Dashboard for Polymarket with continuous analysis and high-performance execution.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

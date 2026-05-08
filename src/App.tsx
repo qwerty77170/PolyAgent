@@ -272,16 +272,16 @@ export default function App() {
                       <AreaChart data={MOCK_PNL_DATA}>
                         <defs>
                           <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.2}/>
+                            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
                             <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
                           </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e0f2fe" vertical={false} />
                         <XAxis dataKey="time" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
                         <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} hide />
                         <Tooltip 
-                          formatter={(value: number) => [`+$${value.toFixed(2)}`, 'Realized Profit']}
-                          contentStyle={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                          formatter={(value: number) => [`+$${value.toLocaleString()}`, 'Total Profit']}
+                          contentStyle={{ background: '#ffffff', border: '1px solid #bae6fd', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.05)' }}
                           labelStyle={{ color: '#64748b' }}
                         />
                         <Area 
@@ -565,13 +565,13 @@ function MarketCard({ market }: { market: Market }) {
           "flex-1 py-2 rounded-xl border text-center text-[10px] font-bold font-mono transition-all",
           market.aiVerdict === 'YES' ? "bg-sky-500 border-sky-600 text-white shadow-sm" : "bg-white border-slate-100 text-slate-300"
         )}>
-          PRO-YES
+          SIGNAL: YES
         </div>
         <div className={cn(
           "flex-1 py-2 rounded-xl border text-center text-[10px] font-bold font-mono transition-all",
           market.aiVerdict === 'NO' ? "bg-rose-500 border-rose-600 text-white shadow-sm" : "bg-white border-slate-100 text-slate-300"
         )}>
-          PRO-NO
+          SIGNAL: NO
         </div>
       </div>
     </div>
